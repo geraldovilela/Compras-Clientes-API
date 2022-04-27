@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,7 +13,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WEBAPI.Domain.DTO;
+using WEBAPI.Domain.Entities;
+using WEBAPI.Infra;
 using WEBAPI.Infra.Data;
+using WEBAPI.Infra.Repositories;
+using WEBAPI.Service;
+using WEBAPI.Service.Interfaces;
 
 namespace DataProcess.WEBAPI
 {
@@ -28,10 +35,19 @@ namespace DataProcess.WEBAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = @"Server=db;Database=master;User=sa;Password=root123@;";
+            var connection = @"Server=ms-sql-server,1433;Database=clientecompradb;User=sa;Password=root123@;";
             services.AddDbContextPool<AppDBContext>(
-                        options => options.UseSqlServer(connection));
+                        options => options.UseSqlServer(connection, b => b.MigrationsAssembly("WEBAPI.Infra")));
 
+            services.AddScoped<IClienteFacade, ClienteFacade>();
+            services.AddScoped<IClienteRepository, ClienteRepository>();
+
+            var config = new AutoMapper.MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Cliente, ClienteDTO>();
+            });
+            IMapper mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -50,6 +66,7 @@ namespace DataProcess.WEBAPI
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DataProcess.WEBAPI v1"));
             }
 
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -60,6 +77,7 @@ namespace DataProcess.WEBAPI
             {
                 endpoints.MapControllers();
             });
+            PrepDB.PrepPopulation(app);
         }
     }
 }

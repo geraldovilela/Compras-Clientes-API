@@ -15,5 +15,8 @@ namespace WEBAPI.Domain.Entities
         public DateTime? CriadoEm { get; set; }
 
         public string Preco { get; set; }
+
+        public Guid ClienteId { get; set; }
+        public Cliente Clientes { get; set; }
     }
 }
