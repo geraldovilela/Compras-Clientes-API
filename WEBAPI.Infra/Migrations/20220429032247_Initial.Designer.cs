@@ -10,7 +10,7 @@ using WEBAPI.Infra.Data;
 namespace WEBAPI.Infra.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20220427021603_Initial")]
+    [Migration("20220429032247_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,12 +30,12 @@ namespace WEBAPI.Infra.Migrations
                     b.Property<string>("CPF")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("DataNascimeto")
+                    b.Property<DateTime?>("DataNascimento")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
@@ -48,6 +48,9 @@ namespace WEBAPI.Infra.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("Clientes");
                 });

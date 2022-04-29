@@ -19,5 +19,12 @@ namespace WEBAPI.Infra.Repositories
             var result = _dbCotnext.Clientes.ToList();
             return result;
         }
+
+        public Cliente CreateCliente(Cliente request)
+        {
+            _dbCotnext.Clientes.Add(request);
+            _dbCotnext.SaveChanges();
+            return request;
+        }
     }
 }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WEBAPI.Domain.DTO;
 using WEBAPI.Domain.Entities;
 using WEBAPI.Service.Interfaces;
 
@@ -26,6 +27,13 @@ namespace DataProcess.WEBAPI.Controllers
         public IActionResult GetAll()
         {
             var result = _clienteFacade.getAllClientes();
+            return Ok(result);
+        }
+
+        [HttpPost]
+        public IActionResult CreateCliente([FromBody]ClienteRequestDTO request)
+        {
+            var result = _clienteFacade.CreateCliente(request);
             return Ok(result);
         }
     }

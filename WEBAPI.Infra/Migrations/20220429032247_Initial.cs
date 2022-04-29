@@ -14,10 +14,10 @@ namespace WEBAPI.Infra.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DataNascimeto = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CPF = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RG = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Email = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -44,6 +44,12 @@ namespace WEBAPI.Infra.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Clientes_Email",
+                table: "Clientes",
+                column: "Email",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Compras_ClienteId",

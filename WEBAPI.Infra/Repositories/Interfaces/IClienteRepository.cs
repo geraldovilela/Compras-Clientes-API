@@ -10,5 +10,7 @@ namespace WEBAPI.Infra.Repositories
     public interface IClienteRepository
     {
         List<Cliente> GetAllClientes();
+
+        Cliente CreateCliente(Cliente request);
     }
 }

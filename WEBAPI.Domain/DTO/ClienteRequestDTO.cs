@@ -1,16 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace WEBAPI.Domain.Entities
+namespace WEBAPI.Domain.DTO
 {
-    [Index(nameof(Email), IsUnique = true)]
-    public class Cliente
+    public class ClienteRequestDTO
     {
-        [Key]
-        public Guid Id { get; set; }
-
+        [Required]
         public string Nome { get; set; }
 
         [Required]
@@ -24,9 +23,5 @@ namespace WEBAPI.Domain.Entities
 
         [Required]
         public string Email { get; set; }
-
-        public List<Compra> Compras { get; set; }
-
-
     }
 }
