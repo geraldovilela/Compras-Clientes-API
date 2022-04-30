@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WEBAPI.Domain.Entities;
@@ -14,6 +15,13 @@ namespace WEBAPI.Infra.Repositories
         {
             _dbCotnext = dbContext;
         }
+
+        public Cliente GetCliente(Guid request )
+        {
+            var result = _dbCotnext.Clientes.Find(request);
+            return result;
+        }
+
         public List<Cliente> GetAllClientes()
         {
             var result = _dbCotnext.Clientes.ToList();

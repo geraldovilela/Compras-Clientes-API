@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WEBAPI.Domain.DTO;
@@ -18,7 +19,15 @@ namespace WEBAPI.Service
             Mapper = mapper;
         }
 
-        public List<ClienteDTO> getAllClientes()
+        public ClienteResponseDTO GetCliente(Guid request)
+        {
+            var result = _clienteRepository.GetCliente(request);
+            var response = Mapper.Map<ClienteResponseDTO>(result);
+            return response;
+
+        }
+
+        public List<ClienteDTO> GetAllClientes()
         {
             var result = _clienteRepository.GetAllClientes();
             var response = Mapper.Map<List<ClienteDTO>>(result);

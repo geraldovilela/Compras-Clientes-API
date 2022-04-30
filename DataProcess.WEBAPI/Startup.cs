@@ -48,6 +48,8 @@ namespace DataProcess.WEBAPI
                 cfg.CreateMap<ClienteDTO, Cliente>();
                 cfg.CreateMap<ClienteRequestDTO, Cliente>();
                 cfg.CreateMap<Cliente,ClienteRequestDTO>();
+                cfg.CreateMap<ClienteResponseDTO, Cliente>();
+                cfg.CreateMap<Cliente, ClienteResponseDTO>();
             });
             IMapper mapper = config.CreateMapper();
             services.AddSingleton(mapper);

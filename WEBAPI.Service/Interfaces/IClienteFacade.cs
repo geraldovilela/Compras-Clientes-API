@@ -10,7 +10,10 @@ namespace WEBAPI.Service.Interfaces
 {
     public interface IClienteFacade
     {
-        List<ClienteDTO> getAllClientes();
+
+        ClienteResponseDTO GetCliente(Guid request);
+
+        List<ClienteDTO> GetAllClientes();
 
         ClienteDTO CreateCliente(ClienteRequestDTO request);
     }
