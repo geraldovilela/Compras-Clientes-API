@@ -25,5 +25,6 @@ docker-compose up
 
 
 #TODOS
-Testes unitarios.
-Authentication.
+- Testes unitarios.
+- Authentication.
+- adicionar middleware de errorhandling e trativa de exceções.
