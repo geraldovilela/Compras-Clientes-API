@@ -1,24 +1,29 @@
 #COMPRAS-CLIENTES-API
 - Cadastro de Usuários
 
-[ ]Não é permitido cadastrar mais de um usuario com o mesmo e-mail
+API foi montada visando uma implementação simples e solida, utilizando DDD e EF Core;
 
-[ ]Não é permitido cadastrar usuario sem e-mail
+#### Para rodar o projeto após clonar rodar o comando docker-compose up na pasta raiz do projeto.
 
-[ ]O cliente tem as propriedades nome e e-mail.
+```
+docker-compose up
+```
 
-[ ]Um cliente pode estar relacionado à múltiplas compras
+[:white_check_mark:]Não é permitido cadastrar mais de um usuario com o mesmo e-mail
+
+[:white_check_mark:]Não é permitido cadastrar usuario sem e-mail
+
+[:white_check_mark:]O cliente tem as propriedades nome e e-mail.
+
+[:white_check_mark:]Um cliente pode estar relacionado à múltiplas compras
 
 - Cadastro de Compras por Cliente
 
-[ ]A entidade Compra tem pelo menos dois campos: Preço e CriadoEm.
+[:white_check_mark:]A entidade Compra tem pelo menos dois campos: Preço e CriadoEm.
   
-[ ]Não é permitido cadastrar compras para usuarios invalidos.
+[:white_check_mark:]Não é permitido cadastrar compras para usuarios invalidos.
 
-[ ]O usuario precisa estar autenticado na aplicação para realizar a compra.
 
-A aplicação deve expor pelo menos os endpoints para as seguintes tarefas:
--	Retornar uma lista de clientes, sem ordems.
--	Retornar um cliente específico com suas ordens.
--	Adicionar uma nova ordem para um cliente existente.
--	Adicionar um novo cliente.
+#TODOS
+Testes unitarios.
+Authentication.
