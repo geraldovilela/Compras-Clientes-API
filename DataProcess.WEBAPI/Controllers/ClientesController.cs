@@ -1,12 +1,7 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using WEBAPI.Domain.DTO;
-using WEBAPI.Domain.Entities;
 using WEBAPI.Service.Interfaces;
 
 namespace DataProcess.WEBAPI.Controllers

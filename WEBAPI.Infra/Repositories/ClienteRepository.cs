@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace WEBAPI.Infra.Repositories
         public Cliente GetCliente(Guid request )
         {
             var result = _dbCotnext.Clientes.Find(request);
+            
             return result;
         }
 

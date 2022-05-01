@@ -10,7 +10,7 @@ using WEBAPI.Infra.Data;
 namespace WEBAPI.Infra.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20220429032247_Initial")]
+    [Migration("20220501011553_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,13 +57,14 @@ namespace WEBAPI.Infra.Migrations
 
             modelBuilder.Entity("WEBAPI.Domain.Entities.Compra", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ClienteId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("CriadoEm")
+                    b.Property<DateTime>("CriadoEm")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Descricao")
@@ -81,13 +82,11 @@ namespace WEBAPI.Infra.Migrations
 
             modelBuilder.Entity("WEBAPI.Domain.Entities.Compra", b =>
                 {
-                    b.HasOne("WEBAPI.Domain.Entities.Cliente", "Clientes")
+                    b.HasOne("WEBAPI.Domain.Entities.Cliente", null)
                         .WithMany("Compras")
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Clientes");
                 });
 
             modelBuilder.Entity("WEBAPI.Domain.Entities.Cliente", b =>

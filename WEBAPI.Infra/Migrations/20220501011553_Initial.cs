@@ -28,9 +28,9 @@ namespace WEBAPI.Infra.Migrations
                 name: "Compras",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Descricao = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CriadoEm = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CriadoEm = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Preco = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClienteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },

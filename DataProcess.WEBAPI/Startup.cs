@@ -1,23 +1,17 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using WEBAPI.Domain.DTO;
 using WEBAPI.Domain.Entities;
 using WEBAPI.Infra;
 using WEBAPI.Infra.Data;
 using WEBAPI.Infra.Repositories;
+using WEBAPI.Infra.Repositories.Interfaces;
 using WEBAPI.Service;
 using WEBAPI.Service.Interfaces;
 
@@ -37,10 +31,14 @@ namespace DataProcess.WEBAPI
         {
             var connection = @"Server=ms-sql-server,1433;Database=clientecompradb;User=sa;Password=root123@;";
             services.AddDbContextPool<AppDBContext>(
-                        options => options.UseSqlServer(connection, b => b.MigrationsAssembly("WEBAPI.Infra")));
+                        options => options.UseLazyLoadingProxies()
+                                          .UseSqlServer(connection, b => b.MigrationsAssembly("WEBAPI.Infra")));
 
             services.AddScoped<IClienteFacade, ClienteFacade>();
             services.AddScoped<IClienteRepository, ClienteRepository>();
+            services.AddScoped<ICompraFacade, CompraFacade>();
+            services.AddScoped<ICompraRepository, CompraRepository>();
+
 
             var config = new AutoMapper.MapperConfiguration(cfg =>
             {
@@ -50,6 +48,8 @@ namespace DataProcess.WEBAPI
                 cfg.CreateMap<Cliente,ClienteRequestDTO>();
                 cfg.CreateMap<ClienteResponseDTO, Cliente>();
                 cfg.CreateMap<Cliente, ClienteResponseDTO>();
+                cfg.CreateMap<Compra, CompraRequestDTO>();
+                cfg.CreateMap<CompraRequestDTO, Compra>();
             });
             IMapper mapper = config.CreateMapper();
             services.AddSingleton(mapper);

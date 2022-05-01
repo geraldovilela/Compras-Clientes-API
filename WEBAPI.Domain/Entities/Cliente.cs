@@ -25,7 +25,7 @@ namespace WEBAPI.Domain.Entities
         [Required]
         public string Email { get; set; }
 
-        public List<Compra> Compras { get; set; }
+        public virtual List<Compra> Compras { get; set; }
 
 
     }

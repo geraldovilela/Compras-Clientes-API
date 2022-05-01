@@ -55,13 +55,14 @@ namespace WEBAPI.Infra.Migrations
 
             modelBuilder.Entity("WEBAPI.Domain.Entities.Compra", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ClienteId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("CriadoEm")
+                    b.Property<DateTime>("CriadoEm")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Descricao")
@@ -79,13 +80,11 @@ namespace WEBAPI.Infra.Migrations
 
             modelBuilder.Entity("WEBAPI.Domain.Entities.Compra", b =>
                 {
-                    b.HasOne("WEBAPI.Domain.Entities.Cliente", "Clientes")
+                    b.HasOne("WEBAPI.Domain.Entities.Cliente", null)
                         .WithMany("Compras")
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Clientes");
                 });
 
             modelBuilder.Entity("WEBAPI.Domain.Entities.Cliente", b =>

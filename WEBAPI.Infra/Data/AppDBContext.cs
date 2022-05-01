@@ -20,8 +20,10 @@ namespace WEBAPI.Infra.Data
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        {           
         }
+
+
         //entities
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Compra> Compras { get; set; }
