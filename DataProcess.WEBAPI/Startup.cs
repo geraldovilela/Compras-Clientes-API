@@ -38,6 +38,7 @@ namespace DataProcess.WEBAPI
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<ICompraFacade, CompraFacade>();
             services.AddScoped<ICompraRepository, CompraRepository>();
+            services.AddScoped<IEmailFacade, EmailFacade>();
 
 
             var config = new AutoMapper.MapperConfiguration(cfg =>
@@ -48,8 +49,8 @@ namespace DataProcess.WEBAPI
                 cfg.CreateMap<Cliente,ClienteRequestDTO>();
                 cfg.CreateMap<ClienteResponseDTO, Cliente>();
                 cfg.CreateMap<Cliente, ClienteResponseDTO>();
-                cfg.CreateMap<Compra, CompraRequestDTO>();
                 cfg.CreateMap<CompraRequestDTO, Compra>();
+                cfg.CreateMap<Compra, CompraRequestDTO>();
             });
             IMapper mapper = config.CreateMapper();
             services.AddSingleton(mapper);

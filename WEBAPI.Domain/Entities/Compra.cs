@@ -20,8 +20,7 @@ namespace WEBAPI.Domain.Entities
         public DateTime CriadoEm { get; set; } = DateTime.Now;
 
         public string Preco { get; set; }
-        [Required]
-
+        
         [ForeignKey("ClienteId")]
         public Guid ClienteId { get; set; }
         

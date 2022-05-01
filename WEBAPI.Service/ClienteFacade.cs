@@ -11,7 +11,7 @@ namespace WEBAPI.Service
 {
     public class ClienteFacade : IClienteFacade
     {
-        private IClienteRepository _clienteRepository;
+        private readonly IClienteRepository _clienteRepository;
         private readonly IMapper Mapper;
         public ClienteFacade(IClienteRepository clienteRepository, IMapper mapper)
         {
